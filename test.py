@@ -6,7 +6,7 @@ import unittest
 from subprocess import getoutput
 
 
-prg = "./klickbrick/__init__.py"
+prg = "./ejskb/__init__.py"
 
 
 class Testing(unittest.TestCase):

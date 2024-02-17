@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "klickbrick"
+name = "ejskb"
 version = "0.0.1"
-description = "An onboarding CLI for Klickbrick"
+description = "e.j.'s onboarding CLI for Klickbrick"
 authors = ["e.j. <git@ejs.sh>"]
 license = "MPL-2.0"
 readme = "README.md"
@@ -10,8 +10,18 @@ readme = "README.md"
 python = "^3.11"
 
 [tool.poetry.scripts]
-klickbrick = "klickbrick:main"
+ejskb = "ejskb:main"
 
+
+[[tool.poetry.source]]
+name = "ejskb"
+url = "https://github.com/ejsdotsh/ejskb/"
+priority = "primary"
+
+
+[[tool.poetry.source]]
+name = "PyPI"
+priority = "primary"
 
 [build-system]
 requires = ["poetry-core"]
