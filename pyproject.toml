@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "klickbrick"
+version = "0.0.1"
+description = "An onboarding CLI for Klickbrick"
+authors = ["e.j. <git@ejs.sh>"]
+license = "MPL-2.0"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+[tool.poetry.scripts]
+klickbrick = "klickbrick:main"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
