@@ -1,18 +1,30 @@
 language: python
 python:
-  - "3.11"
+- '3.11'
 dist: jammy
 before_install:
-  - pip install poetry
+- pip install poetry
 install:
-  - poetry install -vv
+- poetry install -vv
 script:
-  - poetry run python3 -m unittest
+- poetry run python3 -m unittest
+before_deploy:
+- poetry config repositories.test-pypi https://test.pypi.org/legacy
+- poetry config pypi-token.test-pypi $TPPT
 deploy:
-  provider: pypi
+- provider: script
+  script: poetry publish -r test-pypi --build
+- provider: pypi
   server: https://test.pypi.org/legacy/
   edge: true
+  on:
+    branches:
+      only:
+      - main
   username:
     secure: d9oA9YKsqdZiE0aloVj7mhZ35kZu1iTEl8mglH8re7kP73Zidr+WHyIDDDrj3amTr9wzJdzrqpcrZbKxQVFytMvVBRLtkRJAAw43xmXyj5/AIcm6TzgqGIpEwFSdruofNc0L+dqiU+ml04n3Grqv0ZGx7+68G/rkC5n20RYZX9Bf/SKsyqhR3u5fopbWfY1686rUBYaZT2UvhuYJAwe8e8FHtCO356XZAcrvFFO+6JWq9l0zizrB35pGVrKiFnQG8Ro0rtgxAv7GYQaloJ7aQp0WcRA1pjg19qJCV6vvTQh8IxgnCAb2kXqVWo/Po6Xtk9bN6VLqgmffIuvhEhjbMWGLzEbVBHTT0F0SUzvite+MgZRtNFXzbNVIV3iTEdGfqHXOxuPZyikd3eDcZAtX1knQJRts8+ZkGXDzEjAYMYXCZ5uqXbDNbYZOO3BMnPvj6s+YL4rZQQTRbAiiqaIp8nkCTrndv1wMEbzPWW4ei97zjJ/BKCVjqL05Gck41TxS1NX7VrXjk9IQWXBSqeAkp7D7QAV/PTxq4qu9TCqpuRQNZe7ZwuelAVKQ8o7JGU65J0meR63fQrxMoFpEUzkQi7ynUdW10aXNQ2OJWDxIOb3p/jkZp8cuf+IM6KvuKbw9YhAxy5OAV04Td+lEL//M/I7gCUH2Gbm8bZBmBcF7Wzs=
   password:
     secure: WJ3hXB54YvGS25HWrJlE4uMB+EOIk6LnOYmq93QvrOUX4YMI56mbXyTszvdj5P+dHuxz3MJJ+Yli7NMmRd/Vl2vQldH3j0PnIYnHoZplnrX9+gbk2wLPcGC10uNCZlYIRz/pjbwN+VtVULGd+ylI8hYrMiLWvMrPWQjR82Is2oer426MRghGes57BeJXITkDrQ90CFj+/YMnF2EXRHygOx/BhhtM1D1LAdI4xjIQ5sfLtD0/ZUMbB4CIG23X4pk4gb540fWSmKYSSu3nNhSsctLj+qmTY/NhBHgY76RKmOeX7Ev3oJo61JrSF7GL/hMXUcwCupjtSYBP8NvimyrEYWCsxBiWGq24XyNDxYFaCOrPPx6kvG8xHHSrx7kpubXtkhm0SKpH0IaQ47I+9PR0SfdSm64Q4uyTcpvODMf8ZBQySynnbRk4gpIF3FT7czYCTcvipKhSedi6bXpoFxCur5Lp/YHs31dcpOCEO29D4+A94KW+JXNmniusPE4ezemUMU0LegTUy1mn0TJrCMLegLW1CbtY0O92Bxdfs/llQKOi/uiDN8karS2ln+KG3Ld2XRKNlIeQGdaJ8FB4K16lcXgQQ0yTUVKEqurgMkSe4CJ6YURN3wgeuOMlkyfSpeaUwspBAyEFqLe/ONlXv4UzpRrRXp38iM70X/Scp8eGv5E=
+env:
+  global:
+    secure: h65q9uxEijfEdw3/hP4uz05pmV12QqYDM2HjYQ+gArzDFMHvTy1MBGXl9D1KRZXMJECfxjCbXPOsJwbb/qoWbrcM/UbMuGikfLH5y/I2wk2ilrpZrM4XoBR8tr21K4I5t/7w5AHxKd1ggqY4FujN8/R8r0p71Zj+up5am/QnxNcUAEZYPHtA71Emyw+ABBHTXAISU4x6p03iUO5NiE5HdzOAhbuwaGp3KDBRnojZOY1pbK7QYpVdWenkMGZr41bkDH+ViVM5oRb642jiVG2U9dEfki04Zukpy82+yZL0EpOHXyaCo3hmRh+ejuPHA6H/sxT0DfzynUsgVrtOlNiK0djt4e5cBdlihnnutv2/CwqlkpwRoMAEBObQ2R5UfuVo4tRxMSiMwR2n8VEV1gjiQ5tPuEF7pffqfwWQttuOq/HT3+H9KVlo2gh2FEt0mnjhSZ0Bzc2/eF7opQT+w7IuC1YQhD3YsZLIw1tvva8vmlUoHi68+6AY1ss12rkjNPy7vj0NtdgDb2vgUsrUkwjUFc3iLEo18OB3NrSHKX02pfP9LFjQaFyDXgIAlgeXLuITZhdClDMG1tXP4CB6qvkeS702z5EHVGqoMeZzomu/vD2NPjYjDaJPa4NJ3nW+Hn32gJExXo3rjYiF1iHnU2X7ZAe+6kU/8QMUzJ9jTk0saNM=
