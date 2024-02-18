@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ejskb"
-version = "0.0.11"
+version = "0.1.0"
 description = "e.j.'s onboarding CLI for Klickbrick"
 authors = ["e.j. <git@ejs.sh>"]
 license = "MPL-2.0"
@@ -16,10 +16,14 @@ ejskb = "ejskb:main"
 [[tool.poetry.source]]
 name = "ejskb"
 url = "https://github.com/ejsdotsh/ejskb/"
+priority = "primary"
 
 
-# [[tool.poetry.source]]
-# name = "PyPI"
+[[tool.poetry.source]]
+name = "PyPI"
+
+[tool.poetry.group.dev.dependencies]
+behave = "^1.2.6"
 
 [build-system]
 requires = ["poetry-core"]

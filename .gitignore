@@ -26,6 +26,9 @@ venv/
 !ejskb/**
 !tests/**
 
+# BDD
+!features/**
+
 # but not these files or (sub)directories
 !*/
 
