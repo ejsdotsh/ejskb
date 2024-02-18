@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ejskb"
-version = "0.0.8"
+version = "0.0.10"
 description = "e.j.'s onboarding CLI for Klickbrick"
 authors = ["e.j. <git@ejs.sh>"]
 license = "MPL-2.0"
