@@ -26,13 +26,14 @@ jobs:
       script:
         - make test
     - stage: Deploy
+      script: skip
       before_deploy:
         - poetry config repositories.test-pypi https://test.pypi.org/legacy/
         - poetry config pypi-token.test-pypi $TPPT
       deploy:
         - provider: script
           script: poetry publish -r test-pypi --build
-          skip_cleanup: true
+          cleanup: true
           on:
             all_branches: true
           edge: true
