@@ -9,7 +9,7 @@ install:
 script:
   - poetry run python3 -m unittest
 before_deploy:
-  - poetry config repositories.test-pypi https://test.pypi.org/legacy
+  - poetry config repositories.test-pypi https://test.pypi.org/legacy/
   - poetry config pypi-token.test-pypi $TPPT
 deploy:
   - provider: script
