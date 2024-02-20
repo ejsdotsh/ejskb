@@ -7,7 +7,7 @@ license = "MPL-2.0"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = ">=3.10"
 
 [tool.poetry.scripts]
 ejskb = "ejskb.klickbrick:main"
@@ -23,7 +23,7 @@ priority = "primary"
 name = "PyPI"
 
 [tool.poetry.group.dev.dependencies]
-behave = "^1.2.6"
+behave = ">=1.2.6"
 
 [build-system]
 requires = ["poetry-core"]
