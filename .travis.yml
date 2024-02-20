@@ -16,6 +16,7 @@ stages:
 
 before_install:
   - pip install poetry
+  - pip install behave
 install:
   - poetry install -v
 

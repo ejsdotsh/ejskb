@@ -16,12 +16,12 @@ class Testing(unittest.TestCase):
             out = getoutput(f"{prg} {flag}")
             assert out.lower().startswith("usage")
 
-    def test_say_hello(self):
-        self.assertEqual(getoutput(f"{prg} hello"), "Hello, World!")
+    def test_hello(self):
+        self.assertEqual(getoutput(f"{prg} hello"), "Hello, World!\n")
         self.assertEqual(
-            getoutput(f"{prg} hello --name strawberries"), "Hello, Strawberries!"
+            getoutput(f"{prg} hello --name strawberries"), "Hello, Strawberries!\n"
         )
-        self.assertEqual(getoutput(f"{prg} hello --name 13"), "Hello, 13!")
+        self.assertEqual(getoutput(f"{prg} hello --name 13"), "Hello, 13!\n")
 
 
 if __name__ == "__main__":

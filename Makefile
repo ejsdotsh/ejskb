@@ -1,2 +1,2 @@
 test:
-	python3 -m unittest -b
+	behave features/hello.feature
